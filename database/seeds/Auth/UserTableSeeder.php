@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
         User::create([
             'first_name' => 'Super',
             'last_name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@ivylabtech.com',
             'password' => 'secret',
             'confirmation_code' => md5(uniqid(mt_rand(), true)),
             'confirmed' => true,
@@ -30,7 +30,7 @@ class UserTableSeeder extends Seeder
         User::create([
             'first_name' => 'Default',
             'last_name' => 'User',
-            'email' => 'user@user.com',
+            'email' => 'user@ivylabtech.com',
             'password' => 'secret',
             'confirmation_code' => md5(uniqid(mt_rand(), true)),
             'confirmed' => true,
