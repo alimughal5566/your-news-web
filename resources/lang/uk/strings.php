@@ -30,7 +30,7 @@ return [
         'general' => [
             'all_rights_reserved' => 'Всі права захищені.',
             'are_you_sure' => 'Ви впевнені?',
-            'boilerplate_link' => 'Laravel Boilerplate',
+            'boilerplate_link' => 'IvyLabTechnologies',
             'continue' => 'Продовжити',
             'member_since' => 'Користувач з',
             'minutes' => 'хвилин',

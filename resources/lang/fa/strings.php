@@ -31,7 +31,7 @@ return [
         'general' => [
             'all_rights_reserved' => 'همه حقوق محفوظ است.',
             'are_you_sure' => 'آیا مطمئن هستید که می‌خواهید این کار را انجام دهید؟',
-            'boilerplate_link' => 'Laravel Boilerplate',
+            'boilerplate_link' => 'IvyLabTechnologies',
             'continue' => 'ادامه',
             'member_since' => 'عضویت از',
             'minutes' => ' دقیقه',

@@ -31,7 +31,7 @@ return [
         'general' => [
             'all_rights_reserved' => 'Bütün hüquqlar qorunur.',
             'are_you_sure' => 'Bunu etmək istədiyinizə əminsiniz?',
-            'boilerplate_link' => 'Laravel Boilerplate',
+            'boilerplate_link' => 'IvyLabTechnologies',
             'continue' => 'Davam',
             'member_since' => 'Qeydiyyat vaxtı',
             'minutes' => ' dəqiqələr',

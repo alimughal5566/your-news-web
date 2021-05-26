@@ -29,7 +29,7 @@ return [
         'general' => [
             'all_rights_reserved' => 'Alle rettigheter forbeholdes.',
             'are_you_sure' => 'Er du sikker?',
-            'boilerplate_link' => 'Laravel Boilerplate',
+            'boilerplate_link' => 'IvyLabTechnologies',
             'continue' => 'Fortsett',
             'member_since' => 'Medlem siden',
             'minutes' => ' minutter',

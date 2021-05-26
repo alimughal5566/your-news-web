@@ -29,7 +29,7 @@ return [
         'general' => [
             'all_rights_reserved' => 'Tüm Hakları Saklıdır.',
             'are_you_sure' => 'Bunu yapmak istediğinize emin misiniz?',
-            'boilerplate_link' => 'Laravel Boilerplate',
+            'boilerplate_link' => 'IvyLabTechnologies',
             'continue' => 'Devam et',
             'member_since' => 'Üyelik zamanı',
             'minutes' => ' dakika',

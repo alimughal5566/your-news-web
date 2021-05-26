@@ -29,7 +29,7 @@ return [
         'general' => [
             'all_rights_reserved' => 'Alle Rechten Voorbehouden.',
             'are_you_sure' => 'Zeker?',
-            'boilerplate_link' => 'Laravel Boilerplate',
+            'boilerplate_link' => 'IvyLabTechnologies',
             'continue' => 'Doorgaan',
             'member_since' => 'Lid sinds',
             'minutes' => ' minuten',
