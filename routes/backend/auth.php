@@ -57,7 +57,11 @@ Route::group([
             // Deleted
             Route::get('delete', [UserStatusController::class, 'delete'])->name('user.delete-permanently');
             Route::get('restore', [UserStatusController::class, 'restore'])->name('user.restore');
+
+
         });
+        Route::get('news/{id}' , 'UserController@getChannels')->name('user.get.news');
+        Route::get('categories/{id}' , 'UserController@getCategories')->name('user.get.categories');
     });
 
     // Role Management

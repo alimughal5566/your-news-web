@@ -1,4 +1,12 @@
 @extends('backend.layouts.app')
+@push('after-styles')
+    <style>
+        #news .table-responsive , #categories .table-responsive {
+            height: 500px;
+            overflow-y: scroll;
+        }
+    </style>
+    @endpush
 
 @section('title', app_name() . ' | ' . __('labels.backend.access.users.management'))
 
@@ -30,11 +38,8 @@
                             <th>@lang('labels.backend.access.users.table.last_name')</th>
                             <th>@lang('labels.backend.access.users.table.first_name')</th>
                             <th>@lang('labels.backend.access.users.table.email')</th>
-                            <th>@lang('labels.backend.access.users.table.confirmed')</th>
-                            <th>@lang('labels.backend.access.users.table.roles')</th>
-                            <th>@lang('labels.backend.access.users.table.other_permissions')</th>
-                            <th>@lang('labels.backend.access.users.table.social')</th>
-                            <th>@lang('labels.backend.access.users.table.last_updated')</th>
+                            <th>Categories</th>
+                            <th>News</th>
                             <th>@lang('labels.general.actions')</th>
                         </tr>
                         </thead>
@@ -44,10 +49,8 @@
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>@include('backend.auth.user.includes.confirm', ['user' => $user])</td>
-                                <td>{{ $user->roles_label }}</td>
-                                <td>{{ $user->permissions_label }}</td>
-                                <td>@include('backend.auth.user.includes.social-buttons', ['user' => $user])</td>
+                                <td><button class="btn btn-primary" onclick="openCategory({{$user->id}} , '{{$user->first_name}}')">Categories</button></td>
+                                <td><button class="btn btn-primary" onclick="openNews({{$user->id}} , '{{$user->first_name}}')">News</button></td>
                                 <td>{{ $user->updated_at->diffForHumans() }}</td>
                                 <td class="btn-td">@include('backend.auth.user.includes.actions', ['user' => $user])</td>
                             </tr>
@@ -57,6 +60,68 @@
                 </div>
             </div><!--col-->
         </div><!--row-->
+
+        <!-- Modal -->
+        <div class="modal fade" id="categories" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="categoryUserName"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Category Name</th>
+                            </tr>
+                            </thead>
+                            <tbody id="categoriescontent">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="news" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="newsChannelName"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Channel Name</th>
+                                </tr>
+                                </thead>
+                                <tbody id="newscontent">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
@@ -73,3 +138,39 @@
     </div><!--card-body-->
 </div><!--card-->
 @endsection
+
+    <script>
+        function openCategory(id , name){
+            let url = "{{url('admin/auth/categories/')}}" +'/'+ id
+            $.ajax({
+                url: url,
+                success: function (result){
+                    let html = ``;
+                    $.each(result , function (index , i){
+                        html += `<tr><td>${i.category_name}</td></tr>`
+                    })
+                    html += ``;
+                    $('#categoriescontent').html(html);
+                    $('#categoryUserName').text(name)
+                    $('#categories').modal('show');
+                }
+            })
+        }
+
+        function openNews(id , name){
+            let url = "{{url('admin/auth/news/')}}" +'/'+ id
+            $.ajax({
+                url: url,
+                success: function (result){
+                    let html = ``;
+                    $.each(result , function (index , i){
+                        html += `<tr><td>${i.channel_name}</td></tr>`
+                    })
+                    html += ``;
+                    $('#newscontent').html(html);
+                    $('#newsChannelName').text(name)
+                    $('#news').modal('show');
+                }
+            })
+        }
+    </script>

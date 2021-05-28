@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Backend\Auth\User;
 
+use App\Category;
 use App\Events\Backend\Auth\User\UserDeleted;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
 use App\Http\Requests\Backend\Auth\User\StoreUserRequest;
 use App\Http\Requests\Backend\Auth\User\UpdateUserRequest;
 use App\Models\Auth\User;
+use App\News;
 use App\Repositories\Backend\Auth\PermissionRepository;
 use App\Repositories\Backend\Auth\RoleRepository;
 use App\Repositories\Backend\Auth\UserRepository;
@@ -145,5 +147,13 @@ class UserController extends Controller
         event(new UserDeleted($user));
 
         return redirect()->route('admin.auth.user.deleted')->withFlashSuccess(__('alerts.backend.users.deleted'));
+    }
+    public function getCategories($id){
+        $categories = Category::where('user_id' , $id)->get();
+        return response()->json($categories);
+    }
+    public function getChannels($id){
+        $news = News::where('user_id' , $id)->get();
+        return response()->json($news);
     }
 }
